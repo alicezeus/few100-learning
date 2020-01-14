@@ -115,7 +115,7 @@ describe('declaring variables', () => {
                 const [next, ...others] = todos; // the rest operator.
 
                 expect(next).toBe('Clean Garage');
-                expect(others).toEqual(['fix Tire', 'mop Floors']);
+                expect(others).toEqual(['Fix tire', 'mop Floors']);
             });
 
         });
@@ -179,6 +179,7 @@ describe('enums and union constants', () => {
             return SeatType.aisle;
         }
     }
+
     it('a truth table', () => {
         expect(true).toBeTruthy();
         expect(false).toBeFalsy();
@@ -215,5 +216,26 @@ describe('enums and union constants', () => {
                 break;
         }
         expect(cost).toBe(100);
+    });
+    it('with union constants', () => {
+        type SeatType = 'aisle' | 'window' | 'middle';
+        const mySeat: SeatType = 'window';
+    });
+
+    it('type assertions', () => {
+        let x: any;
+
+        x = 'Tacos';
+
+        // expect(x.howlong).toBe(5);
+
+        const y = x as string;
+
+        expect(y.length).toBe(5);
+
+        // tslint:disable-next-line: no-angle-bracket-type-assertion
+        const z = <string>x;
+
+        expect((x as string).length).toBe(5);
     });
 });
